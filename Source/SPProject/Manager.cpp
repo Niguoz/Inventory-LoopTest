@@ -36,7 +36,7 @@ void UManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	loopTimerHandler -= DeltaTime;
 
-	GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Time: %f"), loopTimerHandler));
+	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Time: %f"), loopTimerHandler));
 
 	if (loopTimerHandler <= 0)
 	{
