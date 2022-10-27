@@ -32,19 +32,20 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-void UInventoryComponent::AddObject(FString object)
+void UInventoryComponent::AddObject(ItemTypes object)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Added")));
 	_inventory.Add(object);
 }
 
-void UInventoryComponent::SearchObject(FString object)
+void UInventoryComponent::SearchObject(ItemTypes object)
 {
 	int32 index = _inventory.Find(object);
 
 	if (index != INDEX_NONE)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Found")));
+		_inventory.RemoveSingle(object);
 	}
 	else
 	{

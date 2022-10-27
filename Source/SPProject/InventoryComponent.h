@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BaseItem.h"
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
@@ -26,14 +27,14 @@ public:
 
 	
 private:
-	TArray<FString> _inventory;
+	TArray<ItemTypes> _inventory;
 
 public:
 
 	UFUNCTION(BlueprintCallable)
-		void AddObject(FString object);
+		void AddObject(ItemTypes object);
 
 	UFUNCTION(BlueprintCallable)
-		void SearchObject(FString object);
+		void SearchObject(ItemTypes object);
 
 };
