@@ -3,6 +3,7 @@
 
 #include "BaseItem.h"
 #include "InventoryComponent.h"
+#include "SPProjectCharacter.h"
 
 // Sets default values
 ABaseItem::ABaseItem()
@@ -35,6 +36,19 @@ void ABaseItem::Test(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UP
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Overlap")));
+
+		ASPProjectCharacter* character = Cast<ASPProjectCharacter>(OtherActor);
+		if (character != nullptr)
+		{
+			TArray<UInventoryComponent*> Comps;
+
+			character->GetComponents(Comps);
+			if (Comps.Num() > 0)
+			{
+				UInventoryComponent* FoundComp = Comps[0];
+				FoundComp->AddObject(_type);
+			}
+		}
 	}
 }
 
