@@ -8,13 +8,16 @@
 // Sets default values
 ABaseItem::ABaseItem()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::Test);
+
+	RootComponent = BoxCollider;
+	StaticMesh->SetupAttachment(BoxCollider);
 }
 
 // Called when the game starts or when spawned
@@ -22,6 +25,11 @@ void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ABaseItem::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
 }
 
 // Called every frame
