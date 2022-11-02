@@ -27,14 +27,14 @@ public:
 
 	
 private:
-	TArray<ItemTypes> _inventory;
+	TArray<TEnumAsByte<ItemTypes>> _inventoryList;
 
 public:
 
 	UFUNCTION(BlueprintCallable)
-		void AddObject(ItemTypes object);
+		void AddObject(TEnumAsByte<ItemTypes> object);
 
 	UFUNCTION(BlueprintCallable)
-		void SearchObject(ItemTypes object);
+		bool SearchObject(TEnumAsByte<ItemTypes> object);
 
 };

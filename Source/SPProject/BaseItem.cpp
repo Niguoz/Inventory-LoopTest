@@ -55,11 +55,7 @@ void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 			{
 				UInventoryComponent* FoundComp = Comps[0];
 				FoundComp->AddObject(_type);
-			}
-			else
-			{
-				GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Not Component")));
-			}
+			}			
 		}
 	}
 }

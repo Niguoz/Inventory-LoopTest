@@ -32,26 +32,26 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-void UInventoryComponent::AddObject(ItemTypes object)
+void UInventoryComponent::AddObject(TEnumAsByte<ItemTypes> object)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Added")));
-	_inventory.Add(object);
+	_inventoryList.Add(object);
 }
 
-void UInventoryComponent::SearchObject(ItemTypes object)
+bool UInventoryComponent::SearchObject(TEnumAsByte<ItemTypes> object)
 {
-	int32 index = _inventory.Find(object);
+	int32 index = _inventoryList.Find(object);
 
 	if (index != INDEX_NONE)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Found")));
-		_inventory.RemoveSingle(object);
-		//return true;
+		_inventoryList.RemoveSingle(object);
+		return true;
 	}
 	else
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Not Found")));
-		//return false;
+		return false;
 	}
 
 }
