@@ -14,7 +14,7 @@ ABaseItem::ABaseItem()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
-	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::OverlapBegin);
+	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::StartOverlap);
 
 	RootComponent = BoxCollider;
 	StaticMesh->SetupAttachment(BoxCollider);
@@ -39,7 +39,7 @@ void ABaseItem::Tick(float DeltaTime)
 
 }
 
-void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ABaseItem::StartOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
@@ -53,6 +53,7 @@ void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 			character->GetComponents(Comps);
 			if (Comps.Num() > 0)
 			{
+				GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("HVSADHV")));
 				UInventoryComponent* FoundComp = Comps[0];
 				FString typeString = UEnum::GetValueAsString(_type.GetValue());
 				FoundComp->AddObject(typeString);
