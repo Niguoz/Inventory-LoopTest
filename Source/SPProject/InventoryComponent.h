@@ -35,6 +35,6 @@ public:
 		void AddObject(ItemTypes object);
 
 	UFUNCTION(BlueprintCallable)
-		bool SearchObject(ItemTypes object);
+		void SearchObject(ItemTypes object);
 
 };

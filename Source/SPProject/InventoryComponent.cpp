@@ -38,7 +38,7 @@ void UInventoryComponent::AddObject(ItemTypes object)
 	_inventory.Add(object);
 }
 
-bool UInventoryComponent::SearchObject(ItemTypes object)
+void UInventoryComponent::SearchObject(ItemTypes object)
 {
 	int32 index = _inventory.Find(object);
 
@@ -46,12 +46,12 @@ bool UInventoryComponent::SearchObject(ItemTypes object)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Found")));
 		_inventory.RemoveSingle(object);
-		return true;
+		//return true;
 	}
 	else
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Not Found")));
-		return false;
+		//return false;
 	}
 
 }

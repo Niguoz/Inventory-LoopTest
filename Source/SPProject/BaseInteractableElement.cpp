@@ -1,45 +1,40 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "BaseItem.h"
-#include "InventoryComponent.h"
+#include "BaseInteractableElement.h"
 #include "SPProjectCharacter.h"
+#include "InventoryComponent.h"
 
 // Sets default values
-ABaseItem::ABaseItem()
+ABaseInteractableElement::ABaseInteractableElement()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
-	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::OverlapBegin);
+	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseInteractableElement::OverlapBegin);
 
 	RootComponent = BoxCollider;
 	StaticMesh->SetupAttachment(BoxCollider);
 }
 
 // Called when the game starts or when spawned
-void ABaseItem::BeginPlay()
+void ABaseInteractableElement::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-void ABaseItem::OnConstruction(const FTransform& Transform)
-{
-	Super::OnConstruction(Transform);
-}
-
 // Called every frame
-void ABaseItem::Tick(float DeltaTime)
+void ABaseInteractableElement::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ABaseInteractableElement::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
@@ -54,14 +49,9 @@ void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 			if (Comps.Num() > 0)
 			{
 				UInventoryComponent* FoundComp = Comps[0];
-				FoundComp->AddObject(_type);
-			}
-			else
-			{
-				GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Not Component")));
+				//_bFOundObject = FoundComp->SearchObject(_typeObjNeeded);
 			}
 		}
 	}
 }
-
 
