@@ -14,7 +14,7 @@ ABaseItem::ABaseItem()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
-	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::Test);
+	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &ABaseItem::OverlapBegin);
 
 	RootComponent = BoxCollider;
 	StaticMesh->SetupAttachment(BoxCollider);
@@ -39,7 +39,7 @@ void ABaseItem::Tick(float DeltaTime)
 
 }
 
-void ABaseItem::Test(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
