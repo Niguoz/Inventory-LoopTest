@@ -49,7 +49,8 @@ void ABaseInteractableElement::OverlapBegin(UPrimitiveComponent* OverlappedComp,
 			if (Comps.Num() > 0)
 			{
 				UInventoryComponent* FoundComp = Comps[0];
-				_bFOundObject = FoundComp->SearchObject(_typeObjNeeded);
+				FString typeString = UEnum::GetValueAsString(_typeObjNeeded.GetValue());
+				_bFOundObject = FoundComp->SearchObject(typeString);
 			}
 		}
 	}

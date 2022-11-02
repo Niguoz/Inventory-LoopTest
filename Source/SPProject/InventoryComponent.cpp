@@ -32,13 +32,13 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-void UInventoryComponent::AddObject(TEnumAsByte<ItemTypes> object)
+void UInventoryComponent::AddObject(FString object)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("Added")));
 	_inventoryList.Add(object);
 }
 
-bool UInventoryComponent::SearchObject(TEnumAsByte<ItemTypes> object)
+bool UInventoryComponent::SearchObject(FString object)
 {
 	int32 index = _inventoryList.Find(object);
 

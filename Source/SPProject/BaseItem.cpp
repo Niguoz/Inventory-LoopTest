@@ -54,7 +54,8 @@ void ABaseItem::OverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 			if (Comps.Num() > 0)
 			{
 				UInventoryComponent* FoundComp = Comps[0];
-				FoundComp->AddObject(_type);
+				FString typeString = UEnum::GetValueAsString(_type.GetValue());
+				FoundComp->AddObject(typeString);
 			}			
 		}
 	}
