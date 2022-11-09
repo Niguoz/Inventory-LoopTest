@@ -37,4 +37,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		bool SearchObject(FString object);
 
+	UFUNCTION(BlueprintCallable)
+		TArray<ABaseItem*> ReturnList();
+
 };

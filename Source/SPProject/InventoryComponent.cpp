@@ -79,3 +79,10 @@ bool UInventoryComponent::SearchObject(FString object)
 	}
 }
 
+TArray<ABaseItem*> UInventoryComponent::ReturnList()
+{
+	return TArray<ABaseItem*>();
+}
+
+
+
