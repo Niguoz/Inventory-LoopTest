@@ -27,12 +27,12 @@ public:
 
 	
 private:
-	TArray<FString> _inventoryList;
+	TArray<ABaseItem*> _inventoryList;
 
 public:
 
 	UFUNCTION(BlueprintCallable)
-		void AddObject(FString object);
+		void AddObject(ABaseItem* object);
 
 	UFUNCTION(BlueprintCallable)
 		bool SearchObject(FString object);

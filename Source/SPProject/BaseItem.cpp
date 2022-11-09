@@ -55,8 +55,8 @@ void ABaseItem::StartOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, FString::Printf(TEXT("HVSADHV")));
 				UInventoryComponent* FoundComp = Comps[0];
-				FString typeString = UEnum::GetValueAsString(_type.GetValue());
-				FoundComp->AddObject(typeString);
+				//FString typeString = UEnum::GetValueAsString(_type.GetValue());
+				FoundComp->AddObject(this);
 			}			
 		}
 	}
